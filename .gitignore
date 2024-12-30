@@ -24,3 +24,6 @@ build/
 # System files
 .DS_Store
 Thumbs.db
+
+# Custom
+experiments.ipynb

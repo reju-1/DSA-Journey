@@ -7,6 +7,7 @@ from collections import defaultdict
 
 
 class Solution:
+
     def groupAnagrams(self, strs: list[str]) -> list[list[str]]:
         anagrams = defaultdict(list)
 
@@ -16,8 +17,25 @@ class Solution:
 
         return list(anagrams.values())
 
-    def first_solution(self, strs: list[str]) -> list[list[str]]:
+    def groupAnagrams(self, strs: list[str]) -> list[list[str]]:
+        """
+        Neetcode solution.
+        Time complexity: O(m*n)
+        Time complexity: O(m)
+        """
 
+        res = defaultdict(list)
+        for s in strs:
+            count = [0] * 26
+            for c in s:
+                count[ord(c) - ord("a")] += 1
+            res[tuple(count)].append(s)
+        return list(res.values())
+
+    def first_solution(self, strs: list[str]) -> list[list[str]]:
+        """
+        Time complexity O(n*m*log m)
+        """
         hash_map: dict[str, list[str]] = {}
 
         for keyword in strs:

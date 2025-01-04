@@ -33,8 +33,8 @@ class Solution:
                     col_frequency[num] = 1
 
         # Step:2 for each 3x3 Grid validation
-        for row_start in range(0, 9, 3):
-            for col_start in range(0, 9, 3):
+        for row_start in range(0, 9, 3):  #  [0, 3, 6]
+            for col_start in range(0, 9, 3):  # [0, 3, 6]
 
                 # 3x3 grid
                 grid_frequency = [0] * 10

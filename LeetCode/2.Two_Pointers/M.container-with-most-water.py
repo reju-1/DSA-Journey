@@ -24,7 +24,7 @@ class Solution:
 
         return max_area
 
-    def OthersSolutions(self, height: list[int]) -> int:
+    def A_LeetCode_User_Solution(self, height: list[int]) -> int:
         """
         Time complexity is same for both code. but runtime is faster.
         """

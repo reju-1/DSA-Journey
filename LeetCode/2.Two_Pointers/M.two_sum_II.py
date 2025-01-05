@@ -9,6 +9,10 @@ class Solution:
         """
         Time: O(n)
         Space: O(1)
+
+        Other solutions:
+            - HashMap:
+                * This problem is similar to Tow sum But required Extra O(N) space.
         """
         left, right = 0, len(numbers) - 1
 

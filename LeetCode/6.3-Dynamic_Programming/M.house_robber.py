@@ -35,5 +35,5 @@ class Solution:
 
 """
 There exist O(1) space complexity solution.
-Optimized Bottom-Up DP / Sliding Window Approach which required O(1) space.
+Bottom-Up (Optimized) DP / Sliding Window Approach which required O(1) space.
 """

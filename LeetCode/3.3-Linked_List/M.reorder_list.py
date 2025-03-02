@@ -54,6 +54,42 @@ class Solution:
         if last_node:  # If list have more then 1 node
             last_node.next = None
 
+    def reorderList(self, head: ListNode | None) -> None:
+        """
+        Time: O(n)
+        Space: O(1)
+        Note: Reverse And Merge technique
+        """
+
+        # Go to middle
+        slow, fast = head, head.next
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+
+        current = slow.next
+        prev = None
+        slow.next = None  # two list is separated
+
+        # Reversing the 2nd list
+        while current:
+            temp = current.next
+            current.next = prev
+            prev = current
+            current = temp
+
+        # Merge 2 list
+        first, second = head, prev
+        while second:
+            temp1 = first.next
+            temp2 = second.next
+
+            first.next = second
+            second.next = temp1
+
+            first = temp1
+            second = temp2
+
 
 # --------------------------End-Solution-------------------------------------
 h = ListNode(10, ListNode(20, ListNode(30, ListNode(40))))

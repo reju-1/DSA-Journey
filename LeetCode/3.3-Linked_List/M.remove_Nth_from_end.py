@@ -43,9 +43,11 @@ class Solution:
 
     def removeNthFromEnd(self, head: ListNode | None, n: int) -> ListNode | None:
         """
+        Technique: Two Pointers
         A leetCode user solution
         """
 
+        # Dummy node to handle edge cases: first node or single element list
         dummy = ListNode(-1, next=head)
         first = second = dummy
 

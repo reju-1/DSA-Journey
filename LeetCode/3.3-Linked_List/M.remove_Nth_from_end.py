@@ -41,6 +41,27 @@ class Solution:
 
         return head
 
+    def removeNthFromEnd(self, head: ListNode | None, n: int) -> ListNode | None:
+        """
+        A leetCode user solution
+        """
+
+        dummy = ListNode(-1, next=head)
+        first = second = dummy
+
+        for _ in range(n + 1):  # Shifting first pointer n+1 [+1 for dummy node]
+            first = first.next
+
+        # Moving both pointers, distance between them is constant (n+1)
+        while first:
+            first = first.next
+            second = second.next
+
+        # Removing the nth node
+        second.next = second.next.next
+
+        return dummy.next
+
 
 head = ListNode(10, ListNode(20, ListNode(30, ListNode(40, ListNode(50)))))
 new_list = Solution().removeNthFromEnd(head, 5)

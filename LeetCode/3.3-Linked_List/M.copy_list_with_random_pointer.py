@@ -13,6 +13,12 @@ link: https://leetcode.com/problems/copy-list-with-random-pointer/
 
 class Solution:
     def copyRandomList(self, head: "Optional[Node]") -> "Optional[Node]":
+        """
+        Time: O(n)
+        Space: O(n)
+
+        Space O(1) solution: https://www.youtube.com/watch?v=_GBo_CgST1M
+        """
 
         hash_map = {None: None}  # Old_node -> New_node
 

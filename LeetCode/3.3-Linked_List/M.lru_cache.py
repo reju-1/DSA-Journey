@@ -9,11 +9,15 @@ LRU Cache Design (HashMap + DLL):
     - `Doubly Linked List` for maintaining the order of usage.
 
 Structure:
+
 null <-- head <---> [n number of nodes] <---> tail --> null
 
-- `head.next` Most Recently Used (MRU) node
-- `tail.prev` Least Recently Used (LRU) node
-- Nodes are stored between `head` and `tail`.
+    - `head.next` Most Recently Used (MRU) node
+    - `tail.prev` Least Recently Used (LRU) node
+    - Nodes are stored between `head` and `tail`.
+
+Alternative:
+    - Can be implemented using `OrderedDict()` for simplicity.
 """
 
 

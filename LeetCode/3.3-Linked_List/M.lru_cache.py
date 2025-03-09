@@ -35,7 +35,7 @@ class LRUCache:
 
     def __init__(self, capacity: int):
         self.capacity = capacity
-        self.cache = {}  # {key : Node}
+        self.cache = {}  # {key : Node Address}
 
         # Dummy head and tail (to simplify edge cases)
         self.head = Node(-1, -1)  # MRU

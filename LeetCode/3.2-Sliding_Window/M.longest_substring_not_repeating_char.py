@@ -36,7 +36,8 @@ class Solution:
             if char in hash_map and hash_map[char] >= left:
                 left = hash_map[char] + 1  # left = prev_occurrence + 1
 
-            count = max(count, right - left + 1)
+            window = right - left + 1
+            count = max(count, window)
             hash_map[char] = right  # Update last seen index
 
         return count

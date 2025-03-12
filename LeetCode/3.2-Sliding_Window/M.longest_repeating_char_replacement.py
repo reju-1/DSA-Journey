@@ -35,3 +35,21 @@ class Solution:
             answer = max(answer, window)
 
         return answer
+
+    def characterReplacement(self, s: str, k: int) -> int:
+        left, result = 0, 0
+        counter = {}
+
+        for right, char in enumerate(s):
+
+            counter[char] = counter.get(char, 0) + 1
+            window = right - left + 1
+
+            if window - max(counter.values()) <= k:
+                result = max(result, window)
+
+            else:  # shrink the window from the left.
+                counter[s[left]] -= 1
+                left += 1
+
+        return result

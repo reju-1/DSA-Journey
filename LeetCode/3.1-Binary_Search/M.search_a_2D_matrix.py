@@ -33,3 +33,40 @@ class Solution:
                 right = mid - 1
 
         return False
+
+    def searchMatrix(self, matrix: list[list[int]], target: int) -> bool:
+        """
+        Double Binary Search Technique:
+            1. First, perform a binary search to find the correct row.
+            2. Then, perform a binary search within that row to find the target.
+        """
+
+        rows, cols = len(matrix), len(matrix[0])
+        top, bottom = 0, rows - 1
+
+        while top <= bottom:
+            mid = (top + bottom) // 2
+            if matrix[mid][-1] < target:
+                top = mid + 1
+            elif matrix[mid][0] > target:
+                bottom = mid - 1
+            else:  # Found the possible row
+                break
+
+        if top > bottom:  # If top crosses bottom, the target is not in any row
+            print(f"{top=} {bottom=}")
+            return False
+
+        row = (top + bottom) // 2
+        l, r = 0, cols - 1
+
+        while l <= r:
+            m = (l + r) // 2
+            if matrix[row][m] == target:
+                return True
+            elif matrix[row][m] > target:
+                r = m - 1
+            else:
+                l = m + 1
+
+        return False

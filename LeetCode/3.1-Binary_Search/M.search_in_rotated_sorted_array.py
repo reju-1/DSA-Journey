@@ -38,3 +38,28 @@ class Solution:
         """
 
         return self._search(nums, target, 0, len(nums) - 1)
+
+    def search(self, nums: list[int], target: int) -> int:
+        """
+        Key idea is to identify the sorted half and then perform the check
+        to determine which part should be eliminated.
+        """
+
+        l, r = 0, len(nums) - 1
+        while l <= r:
+            mid = (l + r) // 2
+            if nums[mid] == target:
+                return mid
+
+            if nums[l] <= nums[mid]:  # left half is sorted
+                if nums[l] <= target <= nums[mid]:  # Target lies in left half ?
+                    r = mid - 1
+                else:
+                    l = mid + 1
+
+            else:  # Right half is sorted
+                if nums[mid] <= target <= nums[r]:  # Target lies in right half ?
+                    l = mid + 1
+                else:
+                    r = mid - 1
+        return -1

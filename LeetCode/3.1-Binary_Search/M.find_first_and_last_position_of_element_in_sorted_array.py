@@ -5,6 +5,17 @@ link: https://leetcode.com/problems/find-first-and-last-position-of-element-in-s
 
 
 class Solution:
+
+    def searchRangeV2(self, nums: list[int], target: int) -> list[int]:
+        """
+        Time: O(log n)
+        Space: O(lon n)
+        Note:
+            if all the elements are same then the time ans space will be O(n)
+        """
+        result = self.helper(nums, target, 0, len(nums) - 1)
+        return result if result[0] != float("inf") else [-1, -1]
+
     def helper(self, nums: list[int], key: int, l: int, r: int):
         if l > r:
             return float("inf"), -float("inf")
@@ -23,12 +34,32 @@ class Solution:
     def searchRange(self, nums: list[int], target: int) -> list[int]:
         """
         Time: O(log n)
-        Space: O(lon n)
-        Note:
-            if all the elements are same then the time ans space will be O(n)
+        Space: O(1)
         """
-        result = self.helper(nums, target, 0, len(nums) - 1)
-        return result if result[0] != float("inf") else [-1, -1]
 
+        def helper(l: int, r: int, left_bias: bool) -> int:
 
-Solution().searchRange([0, 1, 3, 3, 3, 4], 10)
+            result = -1
+            nonlocal target
+
+            while l <= r:
+                mid = (l + r) // 2
+
+                if nums[mid] == target:
+                    result = mid
+                    if left_bias:
+                        r = mid - 1
+                    else:
+                        l = mid + 1
+
+                elif nums[mid] > target:
+                    r = mid - 1
+                else:
+                    l = mid + 1
+
+            return result
+
+        left_index = helper(0, len(nums) - 1, True)
+        right_index = helper(0, len(nums) - 1, False)
+
+        return [left_index, right_index]

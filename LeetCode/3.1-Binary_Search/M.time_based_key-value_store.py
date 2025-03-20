@@ -14,6 +14,7 @@ class TimeMap:
         self.store: dict[str, list] = {}  # key: [[val, time], ]
 
     def set(self, key: str, value: str, timestamp: int) -> None:
+        # we take advantage of the fact that timestamp's for set are in a strictly increasing order
         if key not in self.store:
             self.store[key] = []
         self.store[key].append([value, timestamp])

@@ -22,3 +22,22 @@ class Solution:
                 r = mid
 
         return peak
+
+    def findPeakElement(self, nums: list[int]) -> int:
+        n = len(nums)
+        l, r = 0, n - 1
+
+        while l <= r:
+            mid = (l + r) // 2
+            mid_val = nums[mid]
+
+            # -∞ [...] -∞
+            left_vel = nums[mid - 1] if mid > 0 else float("-inf")
+            right_val = nums[mid + 1] if mid < n - 1 else float("-inf")
+
+            if left_vel < mid_val > right_val:  # Mid is peak
+                return mid
+            elif left_vel < mid_val < right_val:  # Increase sequence
+                l = mid + 1
+            else:  # Decreasing sequence
+                r = mid - 1

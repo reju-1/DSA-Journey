@@ -33,3 +33,21 @@ class Solution:
             return 1 + max(left, right), max(curr_d, d1, d2)
 
         return DFS(root)[1]
+
+    def diameterOfBinaryTree_V2(self, root: TreeNode | None) -> int:
+        self.max_diameter = 0
+
+        def longestPath(curr: TreeNode | None) -> int:
+            if curr is None:
+                return 0
+
+            left = longestPath(curr.left)
+            right = longestPath(curr.right)
+
+            diameter = left + right
+            self.max_diameter = max(diameter, self.max_diameter)
+
+            return max(left, right) + 1
+
+        longestPath(root)
+        return self.max_diameter

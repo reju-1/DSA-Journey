@@ -9,7 +9,10 @@ class Solution:
         """
         Time: O(1)
         Space: O(1)
+        Note:
+            Floyd's Cycle Finding Algorithm, great for cycle detection in sequences, Array (Lc: 287) linked lists, and functional graphs.
         """
+
         slow, fast = n, self.get_next(n)
         while slow != 1:
             if fast == slow:

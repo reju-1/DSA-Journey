@@ -14,6 +14,13 @@ class TreeNode:
 
 class Solution:
     def isSameTree(self, p: TreeNode | None, q: TreeNode | None) -> bool:
+        """
+        Time: O(n)
+        Space: O(h)
+        Remarks:
+            - DFS approach
+        """
+
         if p is None and q is None:
             return True
         elif p is None or q is None:  # Either one of is None

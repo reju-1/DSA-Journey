@@ -14,6 +14,13 @@ class TreeNode:
 
 class Solution:
     def maxDepth(self, root: TreeNode | None) -> int:
+        """
+        Time: O(n)
+        Space: O(h)
+        Remarks:
+            - DFS approach
+        """
+
         if root is None:
             return 0
 
@@ -22,3 +29,28 @@ class Solution:
         right_depth = 1 + self.maxDepth(root.right)
 
         return max(left_depth, right_depth)
+
+    def maxDepth(self, root: TreeNode | None) -> int:
+        """
+        Time: O(n)
+        Space: O(w) max width of tree
+        Remarks:
+            - BFS approach (level order traversal)
+        """
+
+        if root is None:
+            return 0
+
+        queue = [root]
+        level = 0
+
+        while queue:
+            for _ in range(len(queue)):  # for each level
+                node = queue.pop(0)
+                if node.left:
+                    queue.append(node.left)
+                if node.right:
+                    queue.append(node.right)
+            level += 1  # increase level
+
+        return level

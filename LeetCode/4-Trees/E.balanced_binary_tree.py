@@ -19,6 +19,9 @@ class Solution:
         Space: O(h)
         Remarks:
             - Related problem: LeetCode 104 (Maximum Depth of Binary Tree).
+            - An iterative DFS approach using a stack could optimize performance by
+              detecting imbalance early (e.g., in the leftmost subtree) and terminating early
+              instead of fully traversing the tree.
         """
 
         def DFS(curr: TreeNode | None) -> tuple[int, bool]:

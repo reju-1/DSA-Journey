@@ -33,3 +33,43 @@ class Solution:
         sequence = dfs(root)  # In-Order sequence
 
         return all(sequence[i] < sequence[i + 1] for i in range(len(sequence) - 1))
+
+    def isValidBST(self, root: TreeNode | None) -> bool:
+        """
+        Time and Space: Typical DFS complexity
+        """
+
+        def valid(curr: TreeNode | None, left_border: int, right_border: int) -> bool:
+            if curr is None:
+                return True
+
+            if not (left_border < curr.val < right_border):
+                return False
+
+            s1 = valid(curr.left, left_border=left_border, right_border=curr.val)
+            s2 = valid(curr.right, left_border=curr.val, right_border=right_border)
+
+            return s1 and s2
+
+        return valid(root, -float("inf"), float("inf"))
+
+    def isValidBST(self, root: TreeNode | None) -> bool:
+        """
+        Time & Space: Typical BFS complexity
+        """
+
+        INF = float("inf")
+        queue = [(-INF, root, INF)]  # (left, node, right)
+
+        while queue:
+            left, node, right = queue.pop(0)
+
+            if not (left < node.val < right):
+                return False
+
+            if node.left:
+                queue.append((left, node.left, node.val))
+            if node.right:
+                queue.append((node.val, node.right, right))
+
+        return True

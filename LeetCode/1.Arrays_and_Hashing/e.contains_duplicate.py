@@ -4,13 +4,8 @@ link: https://leetcode.com/problems/contains-duplicate/description/
 """
 
 
-class Solution(object):
-    def containsDuplicate(self, nums):
-        """
-        :type nums: List[int]
-        :rtype: bool
-        """
-
+class Solution:
+    def containsDuplicate(self, nums: list[int]) -> bool:
         # Version2:
         # unique_elements =  set(nums)
         # return  len(unique_elements) != len(nums)

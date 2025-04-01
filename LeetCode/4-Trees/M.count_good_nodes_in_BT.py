@@ -37,3 +37,40 @@ class Solution:
                 queue.append((node.right, new_max))
 
         return count
+
+    def goodNodesV2(self, root: TreeNode) -> int:
+        """
+        DFS with return value
+        """
+
+        def dfs(curr: TreeNode, maxSoFar: int) -> int:
+            if curr is None:
+                return 0
+
+            count = 0
+            if curr.val >= maxSoFar:
+                count = 1
+
+            count += dfs(curr.left, max(curr.val, maxSoFar))
+            count += dfs(curr.right, max(curr.val, maxSoFar))
+            return count
+
+        return dfs(root, float("-INF"))
+
+    def goodNodesV3(self, root: TreeNode) -> int:
+        """
+        DFS with global variable
+        """
+        self.result = 0
+
+        def dfs(curr: TreeNode, maxSoFar):
+            if curr is None:
+                return
+            if curr.val >= maxSoFar:
+                self.result += 1
+
+            dfs(curr.left, max(curr.val, maxSoFar))
+            dfs(curr.right, max(curr.val, maxSoFar))
+
+        dfs(root, float("-inf"))
+        return self.result

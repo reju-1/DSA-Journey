@@ -13,6 +13,24 @@ class TreeNode:
 
 
 class Solution:
+    def kthSmallestV1(self, root: TreeNode, k: int) -> int:
+        """
+        Time: O(n)
+        Space: O(n)
+        Remarks:
+            - Finds InOrder sequence of tree then returns (K-1)th element
+        """
+
+        def inOrder(curr: TreeNode | None) -> list:
+            if curr is None:
+                return []
+            return inOrder(curr.left) + [curr.val] + inOrder(curr.right)
+
+        sequence = inOrder(root)
+        return sequence[k - 1]  # 1-indexed
+
+    #
+    #
     def kthSmallestV2(self, root: TreeNode, k: int) -> int:
         """
         Time: O(n)
@@ -40,3 +58,30 @@ class Solution:
 
         dfs(root)
         return result
+
+    #
+    #
+    def kthSmallestV3(self, root: TreeNode, k: int) -> int:
+        """
+        Time: O(n)
+        Space: O(h)
+        Remarks:
+            - Iterative DFS approach
+        """
+        stack = [root]
+        curr = root
+
+        while stack or curr:
+            # Go all the way to the leftmost node
+            while curr:
+                stack.append(curr)
+                curr = curr.left
+
+            # Process the node
+            curr = stack.pop()
+            k -= 1
+            if k == 0:
+                return curr.val
+
+            # Move to the right subtree
+            curr = curr.right

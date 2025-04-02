@@ -67,8 +67,11 @@ class Solution:
         Space: O(h)
         Remarks:
             - Iterative DFS approach
+
+        Todo:
+            - Solve with Morris Traversal
         """
-        stack = [root]
+        stack = []
         curr = root
 
         while stack or curr:

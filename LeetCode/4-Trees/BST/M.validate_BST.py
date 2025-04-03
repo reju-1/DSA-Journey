@@ -34,6 +34,39 @@ class Solution:
 
         return all(sequence[i] < sequence[i + 1] for i in range(len(sequence) - 1))
 
+    #
+    #
+    def isValidBST(self, root: TreeNode | None) -> bool:
+        """
+        Time: O(n)
+        Space: O(h)
+        Approach:
+            - similar to lc: 530 approach
+            - Traverse InOrder fashion. By comparing the previous and current value we validate the BST
+        """
+        status = True
+        previous = None
+
+        def inOrder(curr: TreeNode | None):
+            if curr is None:
+                return
+
+            inOrder(curr.left)
+            # Processing the node
+            nonlocal status, previous
+            if previous is not None:
+                if curr.val <= previous:
+                    status = False
+                    return
+            previous = curr.val
+
+            inOrder(curr.right)
+
+        inOrder(root)
+        return status
+
+    #
+    #
     def isValidBST(self, root: TreeNode | None) -> bool:
         """
         Time and Space: Typical DFS complexity
@@ -53,6 +86,8 @@ class Solution:
 
         return valid(root, -float("inf"), float("inf"))
 
+    #
+    #
     def isValidBST(self, root: TreeNode | None) -> bool:
         """
         Time & Space: Typical BFS complexity

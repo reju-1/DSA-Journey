@@ -70,6 +70,7 @@ class Solution:
     def isValidBST(self, root: TreeNode | None) -> bool:
         """
         Time and Space: Typical DFS complexity
+        - https://www.youtube.com/watch?v=s6ATEkipzow
         """
 
         def valid(curr: TreeNode | None, left_border: int, right_border: int) -> bool:

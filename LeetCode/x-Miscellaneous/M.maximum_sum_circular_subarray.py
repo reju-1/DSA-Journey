@@ -42,3 +42,23 @@ class Solution:
         # so the negative subarray sum becomes zero, maximizing the circular subarray sum.
 
         return max(max_sum, total - min_sum)
+
+    #
+    def maxSubarraySumCircular(self, nums: list[int]) -> int:
+        """Concise solution"""
+
+        total = sum(nums)
+        global_max = global_min = nums[0]
+        curr_max, curr_min = 0, 0
+
+        for n in nums:
+            curr_max = max(curr_max + n, n)
+            global_max = max(curr_max, global_max)
+
+            curr_min = min(curr_min + n, n)
+            global_min = min(curr_min, global_min)
+
+        if global_max < 0:
+            return global_max
+
+        return max(global_max, total - global_min)

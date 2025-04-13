@@ -14,7 +14,8 @@ class Solution:
         Remarks:
             - Sorting
         """
-        return nums.sort()[-k]
+        nums.sort()
+        return nums[-k]
 
     #
     def findKthLargest(self, nums: list[int], k: int) -> int:

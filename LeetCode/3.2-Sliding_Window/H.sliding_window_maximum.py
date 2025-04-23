@@ -87,3 +87,29 @@ class Solution:
             answer.append(nums[dq[0]])
 
         return answer
+
+    #
+    def maxSlidingWindow(self, nums: list[int], k: int) -> list[int]:
+        """
+        Remarks: Concise version
+        """
+
+        answer = []
+        dq = deque()
+
+        for i in range(len(nums)):
+            # Remove indices out of the current window
+            if dq and dq[0] < i - k + 1:
+                dq.popleft()
+
+            # Remove elements that are smaller then current
+            while dq and nums[dq[-1]] < nums[i]:
+                dq.pop()
+
+            dq.append(i)
+
+            # Add maximum to the answer when the first full window is ready
+            if i >= k - 1:
+                answer.append(nums[dq[0]])
+
+        return answer

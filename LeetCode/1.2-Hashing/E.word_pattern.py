@@ -29,3 +29,15 @@ class Solution:
             wordToChar[w] = c
 
         return True
+
+    def wordPatternV2(self, pattern: str, s: str) -> bool:
+        """
+        Time: O(N)
+        Space: O(N)
+        Remarks: Uses set lengths to validate that pattern-to-word mapping is bijective.
+        """
+        words = s.split(" ")
+        if len(words) != len(pattern):
+            return False
+
+        return len(set(pattern)) == len(set(words)) == len(set(zip(pattern, words)))

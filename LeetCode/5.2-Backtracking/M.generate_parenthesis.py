@@ -35,5 +35,34 @@ class Solution:
 
         return result
 
+    def generateParenthesisV2(self, n: int) -> list[str]:
+        """
+        Time & Space: same as previous! O(Cn), where Cn is the nth Catalan number
+        Remarks:
+            - DFS + Shared global object
+        Approach:
+            - Add an open parenthesis if open_count < n.
+            - Add a close parenthesis if close_count < open_count.
+            - When open_count == close_count == n, add the current path to the result.
+        """
+        path = []
+        result = []
 
-# Todo: Learn the solution that solved with stack
+        def generate(open_count: int, close_count: int):
+            # if n == open_count == close_count:
+            if len(path) == 2 * n:
+                result.append("".join(path))
+                return
+
+            if open_count < n:
+                path.append("(")
+                generate(open_count + 1, close_count)
+                path.pop()  # clean up
+
+            if close_count < open_count:
+                path.append(")")
+                generate(open_count, close_count + 1)
+                path.pop()  # clean up
+
+        generate(0, 0)
+        return result

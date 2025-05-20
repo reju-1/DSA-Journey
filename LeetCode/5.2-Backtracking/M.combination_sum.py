@@ -27,3 +27,29 @@ class Solution:
 
         dfs(0, 0)
         return results
+
+    def combinationSumV2(self, candidates: list[int], target: int) -> list[list[int]]:
+        """
+        Time: O(N^(T/M +1))
+             where N = Number of candidates T = target, M = minimal val. candidate
+             At each step, try N choices, and recursion depth is up to T/M.
+        Space: O(T/M) for recursion depth and current path storage.
+        """
+        results = []
+        path = []
+        candidates.sort()  # O(1) since N ≤ 30
+
+        def dfs(i: int, curr_sum: int):
+            if curr_sum == target:
+                results.append(path[:])
+                return
+
+            for j in range(i, len(candidates)):  # `range` safely handles i >= N case
+                if curr_sum + candidates[j] > target:
+                    return  # Use `continue` if not sorted
+                path.append(candidates[j])
+                dfs(j, curr_sum + candidates[j])
+                path.pop()
+
+        dfs(0, 0)
+        return results

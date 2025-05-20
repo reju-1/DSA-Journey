@@ -5,7 +5,7 @@ link: https://leetcode.com/problems/combination-sum/
 
 
 class Solution:
-    def combinationSum(self, candidates: list[int], target: int) -> list[list[int]]:
+    def combinationSumV1(self, candidates: list[int], target: int) -> list[list[int]]:
         """
         Time: O(2^T/M) where T = target, M = minimal val. candidate
         Space: O(T/M)
@@ -34,10 +34,12 @@ class Solution:
              where N = Number of candidates T = target, M = minimal val. candidate
              At each step, try N choices, and recursion depth is up to T/M.
         Space: O(T/M) for recursion depth and current path storage.
+        Remark:
+            - Faster due to early pruning
         """
         results = []
         path = []
-        candidates.sort()  # O(1) since N ≤ 30
+        candidates.sort()  # Sorting is O(N log N), negligible compared to O(N^(T/M + 1))
 
         def dfs(i: int, curr_sum: int):
             if curr_sum == target:

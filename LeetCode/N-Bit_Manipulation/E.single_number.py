@@ -68,6 +68,13 @@ class Solution:
                 result ^= 7       → 2 ^ 7 = 5       (010 ^ 111 = 101)
 
             Final result = 5 (binary: 101)
+
+            **Think with Associative low**
+                nums.sort() => [4, 4, 5, 7, 7]
+                => 4^4^5^7^7
+                => (4^4)^5^(7^7)
+                => 0^5^0
+                => 5
         """
 
         result = 0
@@ -86,3 +93,5 @@ XOR Tricks:
     
     2. <Add>
 """
+
+# TODO: Note down every important XOR property

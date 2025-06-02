@@ -30,3 +30,30 @@ class Solution:
             return result
 
         return dfs([])
+
+    def permute(self, nums: list[int]) -> list[list[int]]:
+        """
+        Time: O(n! * n)
+        Space: Same as previous
+        Remarks:
+            - DFS + HashSet
+        """
+
+        def dfs(path: list, used: set) -> list[list[int]]:
+            if len(path) == len(nums):
+                return [path[:]]
+
+            result = []
+            for n in nums:
+                if n not in used:  # O(1) membership checkup
+                    used.add(n)
+                    path.append(n)
+                    result += dfs(path, used)
+                    path.pop()
+                    used.remove(n)
+            return result
+
+        return dfs([], set())
+
+
+# TODO: Solve with Bit Masking & Other Approach

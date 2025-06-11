@@ -9,6 +9,8 @@ class Solution:
         """
         Time: O(rows * cols * 3^(rows * cols)), as each cell can explore up to 3 directions (excluding the visited one).
         Space: O(rows * cols) due to the recursion call stack.
+        Remarks:
+            - Slightly modified version of "79. Word Search"
         """
 
         rows, cols = len(grid), len(grid[0])

@@ -12,27 +12,28 @@ class Solution:
         """
         Time O(n)
         Space O(n)
-
-        Related to Bucket sort or Counting Sort.
+        Remarks:
+            - Related to Bucket sort or Counting Sort.
+            - Create buckets where index = frequency, value = list of numbers.
+            - Iterate buckets from high frequency to low to collect top K elements.
 
         Other possible ways:
             - Counter(nums).most_common(k)
             - by Sorting n*lgo(n)
         """
+        results = []
         counter = Counter(nums)
 
-        buckets = [[] for _ in range(len(nums) + 1)]
+        max_frequency = max(counter.values())
+        buckets = [[] for _ in range(max_frequency + 1)]  # Bucket needed: max_freq + 1
 
         for number, frequency in counter.items():
             buckets[frequency].append(number)
 
-        results = []
-        for bucket in buckets[::-1]:
+        for bucket in reversed(buckets):
             for num in bucket:
                 results.append(num)
-                k -= 1
-
-                if k == 0:
+                if len(results) == k:
                     return results
 
     def topKFrequent(self, nums: list[int], k: int) -> list[int]:

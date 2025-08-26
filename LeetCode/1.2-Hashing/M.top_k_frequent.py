@@ -1,8 +1,9 @@
-""" 
+"""
 347. Top K Frequent Elements
 link: https://leetcode.com/problems/top-k-frequent-elements/description/
 """
 
+import heapq
 from collections import Counter
 
 
@@ -17,7 +18,6 @@ class Solution:
         Other possible ways:
             - Counter(nums).most_common(k)
             - by Sorting n*lgo(n)
-            - by using Heap n*log(k)
         """
         counter = Counter(nums)
 
@@ -34,3 +34,25 @@ class Solution:
 
                 if k == 0:
                     return results
+
+    def topKFrequent(self, nums: list[int], k: int) -> list[int]:
+        """
+        Time: O(n log k)
+        Space: O(n)
+        Remarks:
+            - Heap solution
+        """
+        min_heap = []
+        counter = {}
+
+        # Calculating frequency
+        for n in nums:
+            counter[n] = counter.get(n, 0) + 1
+
+        # Maintain top K frequency window via Heap
+        for item, frequency in counter.items():
+            heapq.heappush(min_heap, (frequency, item))
+            if len(min_heap) > k:
+                heapq.heappop(min_heap)
+
+        return [item for frequency, item in min_heap]

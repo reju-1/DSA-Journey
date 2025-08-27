@@ -11,35 +11,9 @@ class Solution:
         Time: O(n)
         Space: O(1)
         """
+        left = 0  # index where the next non-zero element should go
 
-        i = j = 0
-        n = len(nums)
-
-        while i < n and j < n:
-            while i < n and nums[i] != 0:
-                i += 1
-
-            j = i
-            while j < n and nums[j] == 0:
-                j += 1
-
-            if i < n and j < n:
-                nums[i], nums[j] = nums[j], nums[i]
-
-    def moveZeroes(self, nums: list[int]) -> None:
-        """
-        Time: O(n)
-        Space: O(1)
-        """
-
-        i, j, n = 0, 0, len(nums)
-        while j < n:
-            while i < n and nums[i] != 0:
-                i += 1
-                j = i
-
-            if j < n and nums[j] != 0:
-                nums[i], nums[j] = nums[j], nums[i]
-                i += 1
-
-            j += 1
+        for right in range(len(nums)):
+            if nums[right] != 0:  # if non-zero, swap it into the left position
+                nums[left], nums[right] = nums[right], nums[left]
+                left += 1

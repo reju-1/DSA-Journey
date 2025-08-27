@@ -33,7 +33,22 @@ class Solution:
 
         return True
 
-    def other_solution(self, s: str) -> bool:
+    def isPalindromeV2(self, s: str) -> bool:
+        l, r = 0, len(s) - 1
+
+        while l < r:
+            while l < r and not s[l].isalnum():
+                l += 1
+            while l < r and not s[r].isalnum():
+                r -= 1
+            if s[l].lower() != s[r].lower():
+                return False
+            l += 1
+            r -= 1
+
+        return True
+
+    def isPalindromeV3(self, s: str) -> bool:
 
         s = list(filter(str.isalnum, s.lower()))
         # s = [c for c in s.lower() if c.isalnum()]

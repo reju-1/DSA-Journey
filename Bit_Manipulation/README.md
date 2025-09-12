@@ -36,9 +36,9 @@ The unary NOT (`~`) does **not**.
 | **Set bit**                     | A bit with value `1`.                                                                   |
 | **Unset bit** / **Cleared bit** | A bit with value `0`.                                                                   |
 | **Flip**                        | To toggle a bit: 0 → 1 or 1 → 0.                                                        |
-| **Bit position / index**        | The place of a bit (usually counted from 0 as LSB).                                     |
 | **LSB (Least Significant Bit)** | The rightmost bit (smallest weight, `2^0`).                                             |
 | **MSB (Most Significant Bit)**  | The leftmost bit in a fixed-width representation.                                       |
+| **Bit position / index / Kth bit** | A 0-based index counted from the LSB.                                                |
 | **Bitmask / Mask**              | A pattern of bits (like `0xF` = `1111`) used with AND/OR/XOR to extract or modify bits. |
 | **Bit field**                   | A group of bits treated as a unit (often in structs/registers).                         |
 | **Nibble**                      | 4 bits.                                                                                 |

@@ -4,12 +4,29 @@ Bit manipulation enables fast, memory-efficient, and elegant solutions by direct
 Bit manipulation isn’t just an optimization—it’s a different way of thinking about problems. Master these techniques, and you'll unlock solutions that are both elegant and lightning-fast.
 
 
-## Operators
-Python has only **6 bitwise operators**: AND, OR, XOR, NOT, LEFT-SHIFT, RIGHT-SHIFT     
-We can combine these operators with assignment like `&=`, `<<=` but **not** the `~` since it's unary.
+## Bitwise Operators
+
+Python has **6 bitwise operators**:
+
+- `&`  AND  
+- `|`  OR  
+- `^`  XOR  
+- `~`  NOT (unary)  
+- `<<` Left shift  
+- `>>` Right shift  
+
+Each binary operator has an assignment version (`&=`, `|=`, `^=`, `<<=`, `>>=`).  
+The unary NOT (`~`) does **not**.
+
+### Precedence (highest → lowest)
+
+1. `~`  (Bitwise NOT)  
+2. `<<`, `>>` (Shifts)  
+3. `&`  (AND)  
+4. `^`  (XOR)  
+5. `|`  (OR)  
 
 **Note:** Python bitwise operators work **only on integers**.
-![Diagram showing Python bitwise operators](../docs/images/python-bitwise-operators.png)
 
 
 ## Core Bit Terminology

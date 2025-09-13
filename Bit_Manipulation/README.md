@@ -25,6 +25,7 @@ The unary NOT (`~`) does **not**.
 3. `&`  (AND)  
 4. `^`  (XOR)  
 5. `|`  (OR)  
+[learn-more](https://www.geeksforgeeks.org/python/precedence-and-associativity-of-operators-in-python/)
 
 **Note:** Python bitwise operators work **only on integers**.
 
